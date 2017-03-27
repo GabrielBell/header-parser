@@ -2,11 +2,11 @@ var express= require("express")
 var app= express()
 var path = require("path");
 
-/*app.get('/', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, "/index.html"))
-})*/
+})
 
-app.get('/', function(req,res){
+app.get('/api', function(req,res){
     var lang= req.headers["accept-language"].split(",")[0];
     var clientIP= req.headers["x-forwarded-for"];
     var rawOS= req.headers["user-agent"];
