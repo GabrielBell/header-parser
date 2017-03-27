@@ -12,11 +12,14 @@ app.get('/api', function(req,res){
     var rawOS= req.headers["user-agent"];
     
     var pattern= /\(([^)]+)\)/;
+    if(!pattern.test(rawOS)){
+      res.json({"os": "could not extract OS", "ipaddress":clientIP, "language": lang})
+    }
     var operatingSystem= pattern.exec(rawOS)
     
     res.json({"os": operatingSystem[1], "ipaddress":clientIP, "language": lang})
 })
 
-app.listen(process.env.PORT||8080, function () {
+app.listen(process.env.PORT, function () {
   console.log('server running on port 8080')
 })
